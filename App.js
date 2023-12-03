@@ -4,6 +4,7 @@ import ChatListItem from './src/components/ChatListItem';
 import ChatsScreen from './src/screens/ChatsScreen';
 import ChatScreen from './src/screens/ChatScreen';
 import Navigator from './src/navigation';
+import WelcomeScreen from './src/screens/authScreens/WelcomeScreen';
 
 export default function App() {
   const chat = {
@@ -25,6 +26,7 @@ export default function App() {
       {/* <ChatsScreen/> */}
       {/* <ChatScreen/> */}
       <Navigator/>
+      {/* <WelcomeScreen/> */}
     </View>
   );
 }
