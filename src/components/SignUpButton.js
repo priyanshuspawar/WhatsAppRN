@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View,Pressable } from 'react-native'
+import { StyleSheet, Text, View,Pressable,TouchableOpacity } from 'react-native'
 import React from 'react'
 
 const SignUpButton = ({width,onPress,title}) => {
   return (
-    <Pressable onPress={onPress} style={[styles.buttonContainer,{width:width}]}>
+    <TouchableOpacity onPress={onPress} style={[styles.buttonContainer,{width:width}]}>
     <View>
       <Text style={styles.buttonTitleStyle}>{title}</Text>
     </View>
-    </Pressable>
+    </TouchableOpacity>
   )
 }
 
