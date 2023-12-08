@@ -116,7 +116,7 @@ const SignUpField = () => {
         </Text>
         <Pressable
           onPress={() => {
-            navigator.navigate("signin");
+            navigator.navigate("signIn");
           }}
         >
           <Text style={{ color: "#075E55", fontWeight: "bold" }}>

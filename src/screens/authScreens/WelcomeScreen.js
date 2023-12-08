@@ -1,11 +1,15 @@
 import { StyleSheet, Text, View,SafeAreaView, Image } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { AuthContext } from '../../contexts/authContext';
+
 // import { SafeAreaView } from 'react-native-safe-area-context'
 
 
 const WelcomeScreen = () => {
   const navigator = useNavigation();
+  // const { count, increment, decrement } = useCounter();
+  // const {text,setText} = useContext(AuthContext);
   return (
   
     <SafeAreaView style={styles.container} edges={["top"]}>
@@ -26,7 +30,7 @@ const WelcomeScreen = () => {
       </View>
 
 
-      <Text style={styles.subtitle} onPress={()=>navigator.navigate("signup")}>Agree & Continue</Text>
+      <Text style={styles.subtitle} onPress={()=>navigator.navigate("signUp")}>Agree & Continue</Text>
     </SafeAreaView>
  
   )

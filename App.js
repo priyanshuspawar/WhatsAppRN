@@ -1,37 +1,62 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import ChatListItem from './src/components/ChatListItem';
-import ChatsScreen from './src/screens/ChatsScreen';
-import ChatScreen from './src/screens/ChatScreen';
+import { ActivityIndicator, Alert, StyleSheet, Text, View } from 'react-native';
 import Navigator from './src/navigation';
-import WelcomeScreen from './src/screens/authScreens/WelcomeScreen';
 
 import { Amplify } from 'aws-amplify'
 import awsconfig from './src/aws-exports'
+import { AuthContext, getDataStorage } from './src/contexts/authContext';
+import { useEffect, useState } from 'react';
+
 Amplify.configure(awsconfig)
 
 export default function App() {
-  const chat = {
-    id: "1",
-    user: {
-      image:
-        "https://i.imgur.com/lsGiUDs.jpg",
-      name: "Kritika",
-    },
-    lastMessage: {
-      text: "Oke",
-      createdAt: "07:30",
-    },
-  };
+  
+  const [authObject, setAuthObject] = useState(undefined);
 
+  const checkUser = async () =>{
+    const response = await getDataStorage();
+    if(response){
+      console.log("@@",response)
+      setAuthObject(response)
+      return;
+    }
+    setAuthObject(null)
+  
+
+  }
+
+  useEffect(() => {
+    // AsyncStorage.getItem('DEMO_APP::COUNT_VALUE').then((value) => {
+    //   if (value) {
+    //     setCount(parseInt(value));
+    //   }
+    // });
+    // getDataStorage()
+    checkUser()
+  }, []);
+
+
+  if(authObject===undefined){
+    return(
+      <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+        <ActivityIndicator color={"green"}/>
+      </View>
+    )
+  }
+
+  
   return (
+
+
+    <AuthContext.Provider value={{authObject,setAuthObject}}>
     <View style={styles.container}>
       <StatusBar style="auto" />
-      {/* <ChatsScreen/> */}
-      {/* <ChatScreen/> */}
+
       <Navigator/>
-      {/* <WelcomeScreen/> */}
     </View>
+    </AuthContext.Provider>
+    
+    
   );
 }
 
